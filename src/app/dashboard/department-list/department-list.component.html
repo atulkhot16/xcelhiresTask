@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-12">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" class="w-100">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef> Edit </th>
+                    <td mat-cell *matCellDef="let element"><button mat-raised-button color="warn" data-toggle="modal"
+                            data-target="#exampleModal" (click)="editData(element.id)">Edit</button></td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[3, 10, 20]" showFirstLastButtons
+                aria-label="Select page of department">
+            </mat-paginator>
+        </div>
+    </div>
+</div>
+<div class="row my-3">
+    <div class="col-6">
+        <input type="text" class="form-control" placeholder="Add department" [(ngModel)]="departMentName">
+    </div>
+    <div class="col-6">
+        <button class="btn btn-primary" (click)="addDept()">Add department</button>
+    </div>
+    <div class="col-12 my-3">
+        <label>Import CSV</label>
+        <input type="file" (change)="importCSV($event)" class="form-control mb-2">
+    </div>
+</div>
+<div class="row">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="editForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" formControlName="edit">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="updateName()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

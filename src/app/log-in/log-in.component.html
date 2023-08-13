@@ -1,0 +1,17 @@
+<!-- <p>log-in works!</p> -->
+<div class="row logIn-box">
+    <mat-card>
+        <form class="logInForm" [formGroup]="logInForm" (ngSubmit)="formSubmit()">
+            <mat-form-field appearance="fill">
+                <mat-label>User name</mat-label>
+                <input matInput placeholder="User name" formControlName="username">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" placeholder="Password" formControlName="password">
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Log in</button>
+        </form>
+    
+    </mat-card>
+</div>
